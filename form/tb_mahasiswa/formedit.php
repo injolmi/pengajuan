@@ -25,14 +25,15 @@
   <!-- Daterange picker -->
   <link rel="stylesheet" href="../../AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="../../AdminLTE/plugins/summernote/summernote-bs4.min.css"><body>
+  <link rel="stylesheet" href="../../AdminLTE/plugins/summernote/summernote-bs4.min.css">
+  <body>
 <?php
 include"../../config/koneksi.php";
 include "../../AdminLTE/sidebar.php";
 include "../../AdminLTE/header.php";
 $npm=$_GET['npm'];
 $edit = mysqli_query($koneksi,"select * from tb_mahasiswa where npm='$npm'");
-  while($data = mysqli_fetch_array($edit)){
+while($data = mysqli_fetch_array($edit)){
 ?>
 <div class="w-50 mx-auto border p-3 mt-5">
 	<h4 class="mb"><i class="fa fa-angle-right"></i> Edit Data Mahasiswa</h4>

@@ -31,7 +31,7 @@ include"../../config/koneksi.php";
 include "../../AdminLTE/sidebar.php";
 include "../../AdminLTE/header.php";
 $nip=$_GET['nip'];
-$edit = mysqli_query($koneksi,"select * from tb_pegawai where  nip='$ nip'");
+$edit = mysqli_query($koneksi,"select * from tb_pegawai where nip='$nip'");
   while($data = mysqli_fetch_array($edit)){
 ?>
 <div class="w-50 mx-auto border p-3 mt-5">

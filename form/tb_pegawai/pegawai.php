@@ -43,11 +43,11 @@ include '../../config/koneksi.php';
       <label>Nama Pegawai</label>
       <input type="text" name="nama_pegawai"  class="form-control" required>
 
-      <label>Jabatan</label>
+      <label>Level</label>
       <select name="id_jabatan" id="id_jabatan" class="form-control" required="required">
                         <option value="">--Jabatan--</option>
                         <?php 
-                        $sql_nama = mysqli_query($conn, "SELECT * FROM tb_jabatan") or die (mysqli_error($conn));
+                        $sql_nama = mysqli_query($koneksi, "SELECT * FROM tb_jabatan") or die (mysqli_error($koneksi));
                         while ($data_nama = mysqli_fetch_array($sql_nama)) {
                         echo '<option value ="'.$data_nama['id_jabatan'].'">'.$data_nama['jabatan'].'</option>';
                         }

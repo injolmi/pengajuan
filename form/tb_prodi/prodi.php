@@ -1,6 +1,21 @@
 <?php
 include "../../AdminLTE/sidebar.php";
 include "../../AdminLTE/header.php";
+include "../../config/koneksi.php";
+
+$query = "SELECT * FROM tb_prodi order by id_prodi desc limit 1";
+$result= mysqli_query($koneksi,$query);
+$row   = mysqli_fetch_array($result);
+$lastprodi = $row['id_prodi'];
+if ($lastprodi == " ") {
+  
+  $noprodi = "P-001";
+}
+else {
+  $noprodi=substr($lastprodi, 4);
+  $noprodi=intval($noprodi);
+  $noprodi="P-00".($noprodi + 1);
+}
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +52,7 @@ include "../../AdminLTE/header.php";
   <h4 class="mb"><i class="fa fa-angle-right"></i> Input Data Program Studi</h4>
     <form action="add.php" method="POST">
       <label>Id Prodi</label>
-      <input type="text" name="id_prodi"  class="form-control" required>
+      <input type="text" name="id_prodi" value="<?php echo $noprodi ?>" class="form-control" readonly>
 
       <label>Program Studi</label>
       <input type="text" name="prodi"  class="form-control" required>

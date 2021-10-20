@@ -42,6 +42,9 @@ include "../../AdminLTE/header.php";
 			<td align="center">Nama Pegawai</td>
 			<td align="center">Jabatan</td>
 			<td align="center">No Telepon</td>
+			<td align="center">Username</td>
+			<td align="center">Password</td>
+			<td align="center">Level</td>
 			<td align="center">Foto Pegawai</td>
 			<td align="center">Tanda Tangan Pegawai</td>
 			<td align="center">Update</td>
@@ -49,7 +52,7 @@ include "../../AdminLTE/header.php";
 		<?php
 		include"../../config/koneksi.php";
 		$no=1;
-		$tampil = mysqli_query($koneksi,"SELECT a.nip, a.nama_pegawai, b.jabatan, a.no_telp_pegawai,a.foto_pegawai, a.ttd_pegawai FROM tb_pegawai as a, tb_jabatan as b WHERE a.id_jabatan=b.id_jabatan");
+		$tampil = mysqli_query($koneksi,"SELECT a.nip, a.nama_pegawai, b.jabatan, a.no_telp_pegawai,a.username, a.password,a.level, a.foto_pegawai, a.ttd_pegawai FROM tb_pegawai as a, tb_jabatan as b WHERE a.id_jabatan=b.id_jabatan");
 		while($data = mysqli_fetch_array($tampil)){
 		?>
 		<tr style="color: black;">
@@ -58,6 +61,9 @@ include "../../AdminLTE/header.php";
 			<td align="center"><?php echo $data['nama_pegawai'];?></td>
 			<td align="center"><?php echo $data['jabatan'];?></td>
 			<td align="center"><?php echo $data['no_telp_pegawai'];?></td>
+			<td align="center"><?php echo $data['username'];?></td>
+			<td align="center"><?php echo $data['password'];?></td>
+			<td align="center"><?php echo $data['level'];?></td>
 			<td align="center"><img src="../foto_pegawai/<?php echo $data['foto_pegawai'];?>" width="100px" height="100px"></td>
 			<td align="center"><img src="../ttd_pegawai/<?php echo $data['ttd_pegawai'];?>"  width="100px" height="100px"></td>
 			<td align="center">

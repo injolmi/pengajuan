@@ -80,6 +80,7 @@ $data  = mysqli_fetch_array($detail);
     </table>
     <!-- <h3 class="card-title">Detail Data Pegawai</h3> -->
     <a href="view.php" class="btn btn-primary">Kembali</a>
+    
   </div>
 </div>
 

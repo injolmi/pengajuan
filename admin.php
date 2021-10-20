@@ -1,6 +1,7 @@
 <?php 
 include "adminLTE/sidebar.php";
 include "adminLTE/header.php";
+include "AdminLTE/footer.php"
  ?>
  <!DOCTYPE html>
  <html>

@@ -110,18 +110,6 @@ include "rel.html";
                   <p>Pengajuan</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="../../form/tb_verifikasi/view.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Verifikasi</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="../../form/tb_surat/view.php" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Surat Keterangan</p>
-                </a>
-              </li>
             </ul>
           </li>
           

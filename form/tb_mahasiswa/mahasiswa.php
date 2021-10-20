@@ -1,7 +1,7 @@
 <?php
 include "../../AdminLTE/sidebar.php";
 include "../../AdminLTE/header.php";
-include '../../config/koneksi2.php';
+include '../../config/koneksi.php';
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +47,7 @@ include '../../config/koneksi2.php';
       <select name="id_prodi" id="id_prodi" class="form-control" required="required">
                         <option value="">--Prodi--</option>
                         <?php 
-                        $sql_nama = mysqli_query($conn, "SELECT * FROM tb_prodi") or die (mysqli_error($conn));
+                        $sql_nama = mysqli_query($koneksi, "SELECT * FROM tb_prodi") or die (mysqli_error($koneksi));
                         while ($data_nama = mysqli_fetch_array($sql_nama)) {
                         echo '<option value ="'.$data_nama['id_prodi'].'">'.$data_nama['prodi'].'</option>';
                         }

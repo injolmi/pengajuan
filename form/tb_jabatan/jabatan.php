@@ -2,6 +2,20 @@
 include "../../AdminLTE/sidebar.php";
 include "../../AdminLTE/header.php";
 include '../../config/koneksi.php';
+
+$query= "SELECT * FROM tb_jabatan order by id_jabatan desc limit 1";
+$result= mysqli_query($koneksi,$query);
+$row   = mysqli_fetch_array($result);
+$lastjabatan = $row['id_jabatan'];
+if ($lastjabatan == " ") {
+  
+  $nojbtn = "JAB-001";
+}
+else {
+  $nojbtn=substr($lastjabatan, 6);
+  $nojbtn=intval($nojbtn);
+  $nojbtn="JAB-00".($nojbtn + 1);
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +52,7 @@ include '../../config/koneksi.php';
   <h4 class="mb"><i class="fa fa-angle-right"></i> Input Data Jabatan</h4>
     <form action="add.php" method="POST">
       <label>Id Jabatan</label>
-      <input type="text" name="id_jabatan"  class="form-control" required>
+      <input type="text" name="id_jabatan" id="id_jabatan" class="form-control" value="<?php echo $nojbtn ?>" readonly>
 
       <label>Jabatan</label>
       <input type="text" name="jabatan"  class="form-control" required>
