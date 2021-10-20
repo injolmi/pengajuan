@@ -1,6 +1,6 @@
 <html>
 <head>
-	<title>Edit Data</title>
+  <title>Edit Data</title>
 </head>
     <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,71 +26,72 @@
   <link rel="stylesheet" href="../../AdminLTE/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="../../AdminLTE/plugins/summernote/summernote-bs4.min.css"><body>
+
 <?php
 include"../../config/koneksi.php";
 include "../../AdminLTE/sidebar.php";
 include "../../AdminLTE/header.php";
 $nip=$_GET['nip'];
 $edit = mysqli_query($koneksi,"select * from tb_pegawai where nip='$nip'");
-  while($data = mysqli_fetch_array($edit)){
+while($data = mysqli_fetch_array($edit)){
 ?>
+
+
 <div class="w-50 mx-auto border p-3 mt-5">
-	<h4 class="mb"><i class="fa fa-angle-right"></i> Edit Data Mahasiswa</h4>
-		<form action="edit.php" method="POST" enctype="multipart/form-data">
-			<label>NIP</label>
-			<input type="text" name="nip" class="form-control" value="<?php echo $data['nip'];?>" readonly>
+  <h4 class="mb"><i class="fa fa-angle-right"></i> Edit Data Mahasiswa</h4>
+    <form action="edit.php" method="POST" enctype="multipart/form-data">
+      <label>Nip</label>
+      <input type="text" name="nip" class="form-control" value="<?php echo $data['nip'];?>" readonly>
 
-			<label>Nama Pegawai</label>
-			<input type="text" name="nama_pegawai"  class="form-control" value="<?php echo $data['nama_pegawai'];?>" required>
+      <label>Nama Pegawai</label>
+      <input type="text" name="nama_pegawai" class="form-control" value="<?php echo $data['nama_pegawai'];?>" >
 
-			<label>Jabatan</label>
-			<select name="id_jabatan" id="id_jabatan" class="form-control" value="<?php echo $data['id_jabatan'];?>">
-                        <option value="">--Jurusan--</option>
+          <label>Nama Mahasiswa</label>
+          <select name="id_jabatan" id="id_jabatan" class="form-control" required="required">
+                        <option value="">--Jabatan--</option>
                         <?php 
-                        $sql_nama = mysqli_query($conn, "SELECT * FROM tb_jabatan") or die (mysqli_error($conn));
+                        $sql_nama = mysqli_query($koneksi, "SELECT * FROM tb_jabatan") or die (mysqli_error($koneksi));
                         while ($data_nama = mysqli_fetch_array($sql_nama)) {
                         echo '<option value ="'.$data_nama['id_jabatan'].'">'.$data_nama['jabatan'].'</option>';
                         }
                         ?>
                       </select>
 
-      		<label>No Telepon</label>
-     		<input type="text" name="no_telp_pegawai"  class="form-control" value="<?php echo $data['no_telp_pegawai'];?>" required>
+       <label>No Telepon</label>
+      <input type="text" name="no_telp_pegawai"  class="form-control" value="<?php echo $data['no_telp_pegawai'];?>">
 
-     		<label>Username</label>
-      		<input type="text" name="username"  class="form-control" value="<?php echo $data['username'];?>" required>
+      <label>Username</label>
+      <input type="text" name="username"  class="form-control" value="<?php echo $data['username'];?>">
 
-	  		<label>Password</label>
-	  		<input type="text" name="password"  class="form-control" value="<?php echo $data['password'];?>" required>
+      <label>Password</label>
+      <input type="text" name="password" class="form-control" value="<?php echo $data['password'];?>">
 
+      <label>Level</label>
+      <select name="level" class="form-control" value="<?php echo $data['level'];?>">
+      <option >--Level--</option>
+      <option >1</option>
+      <option >2</option>
+      </select>
 
-	  		<label>Level</label>
-      		<select name="level" class="form-control" required="required">
-      		<option>--Level--</option>
-      		<option>1</option>
-      		<option>2</option>
-      		</select>
+      <label>Foto Pegawai</label>
+      <input type="file" name="foto_pegawai"  class="form-control" value="<?php echo $data['foto_pegawai'];?>">
 
-
-	  		<label>Foto Pegawai</label>
-	  		<input type="file" name="foto_pegawai"  class="form-control" value="<?php echo $data['foto_pegawai'];?>" >
-
-	  		<label>Tanda Tangan Pegawai</label>
-	  		<input type="file" name="ttd_pegawai"  class="form-control" value="<?php echo $data['ttd_pegawai'];?>" >
-		
-			<div class="form-group">
-        	<label class="col-sm-2 col-sm-2 control-label"></label>
-			<div class="col-sm-10">
-				
-			<input class="btn btn-sm btn-success" name="submit" type="submit" value="Simpan">
-			<a href="view.php" class="btn btn-sm btn-danger">Batal </a>
-			</div>
-		</div>
-		</form>
-  <?php 
+      <label>Tanda Tangan Pegawai</label>
+      <input type="file" name="ttd_pegawai" class="form-control" value="<?php echo $data['ttd_pegawai'];?>">
+    
+      <div class="form-group">
+          <label class="col-sm-2 col-sm-2 control-label"></label>
+      <div class="col-sm-10">
+        
+      <input class="btn btn-sm btn-success" name="submit" type="submit" value="Simpan">
+      <a href="view.php" class="btn btn-sm btn-danger">Batal </a>
+      </div>
+    </div>
+    </form>
+    <?php 
   }
   ?>
-	</div>
+  </div>
 </body>
   <!-- jQuery -->
 <script src="../../AdminLTE/plugins/jquery/jquery.min.js"></script>

@@ -42,9 +42,6 @@ include "../../AdminLTE/header.php";
 			<td align="center">Nama Pegawai</td>
 			<td align="center">Jabatan</td>
 			<td align="center">No Telepon</td>
-			<td align="center">Username</td>
-			<td align="center">Password</td>
-			<td align="center">Level</td>
 			<td align="center">Foto Pegawai</td>
 			<td align="center">Tanda Tangan Pegawai</td>
 			<td align="center">Update</td>
@@ -61,9 +58,6 @@ include "../../AdminLTE/header.php";
 			<td align="center"><?php echo $data['nama_pegawai'];?></td>
 			<td align="center"><?php echo $data['jabatan'];?></td>
 			<td align="center"><?php echo $data['no_telp_pegawai'];?></td>
-			<td align="center"><?php echo $data['username'];?></td>
-			<td align="center"><?php echo $data['password'];?></td>
-			<td align="center"><?php echo $data['level'];?></td>
 			<td align="center"><img src="../foto_pegawai/<?php echo $data['foto_pegawai'];?>" width="100px" height="100px"></td>
 			<td align="center"><img src="../ttd_pegawai/<?php echo $data['ttd_pegawai'];?>"  width="100px" height="100px"></td>
 			<td align="center">
