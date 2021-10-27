@@ -1,137 +1,260 @@
-<html>
-<head>
-  <title>Edit Data</title>
-</head>
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-  <link rel="stylesheet" href="../../AdminLTE/https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../AdminLTE/plugins/fontawesome-free/css/all.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="../../AdminLTE/https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="../../AdminLTE/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-  <!-- iCheck -->
-  <link rel="stylesheet" href="../../AdminLTE/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- JQVMap -->
-  <link rel="stylesheet" href="../../AdminLTE/plugins/jqvmap/jqvmap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../AdminLTE/dist/css/adminlte.min.css">
-  <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="../../AdminLTE/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  <!-- Daterange picker -->
-  <link rel="stylesheet" href="../../AdminLTE/plugins/daterangepicker/daterangepicker.css">
-  <!-- summernote -->
-  <link rel="stylesheet" href="../../AdminLTE/plugins/summernote/summernote-bs4.min.css"><body>
+<!DOCTYPE html>
+<html lang="en">
 
-<?php
-include"../../config/koneksi.php";
-include "../../AdminLTE/sidebar.php";
-include "../../AdminLTE/header.php";
-$nip=$_GET['nip'];
-$edit = mysqli_query($koneksi,"select * from tb_pegawai where nip='$nip'");
-while($data = mysqli_fetch_array($edit)){
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CRUD TABEL KRITERIA</title>
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="AdminLTE/plugins/fontawesome-free/css/all.min.css">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="AdminLTE/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="AdminLTE/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="AdminLTE/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="AdminLTE/dist/css/adminlte.min.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+  <div class="wrapper">
+   <?php
+include "AdminLTE/header.php";
+include "AdminLTE/sidebar.php";
+include 'config/koneksi.php';
 ?>
 
 
-<div class="w-50 mx-auto border p-3 mt-5">
-  <h4 class="mb"><i class="fa fa-angle-right"></i> Edit Data Mahasiswa</h4>
-    <form action="edit.php" method="POST" enctype="multipart/form-data">
-      <label>Id Pengajuan</label>
-      <input type="text" name="nip" class="form-control" value="<?php echo $data['nip'];?>" readonly>
 
-      <label>Nama Pegawai</label>
-          <select name="nip" id="nip" class="form-control" required="required">
-                        <option value="">--Nama Pegawai--</option>
-                        <?php 
-                        $sql_nama = mysqli_query($koneksi, "SELECT * FROM tb_pegawai") or die (mysqli_error($koneksi));
-                        while ($data_nama = mysqli_fetch_array($sql_nama)) {
-                        echo '<option value ="'.$data_nama['nip'].'">'.$data_nama['nama_pegawai'].'</option>';
-                        }
-                        ?>
-                      </select>
 
-          <label>Nama Mahasiswa</label>
-          <select name="npm" id="npm" class="form-control" required="required">
-                        <option value="">--Nama Mahasiswa--</option>
-                        <?php 
-                        $sql_nama = mysqli_query($koneksi, "SELECT * FROM tb_mahasiswa") or die (mysqli_error($koneksi));
-                        while ($data_nama = mysqli_fetch_array($sql_nama)) {
-                        echo '<option value ="'.$data_nama['npm'].'">'.$data_nama['nama_mahasiswa'].'</option>';
-                        }
-                        ?>
-                      </select>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+          <div class="row mb-2">
+            <div class="col-sm-6">
+              <h1>Data Kriteria</h1>
+            </div>
+            <div class="col-sm-6">
+              <ol class="breadcrumb float-sm-right">
+                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                <li class="breadcrumb-item active">Data User</li>
+              </ol>
+            </div>
+          </div>
+        </div><!-- /.container-fluid -->
+      </section>
 
-          <label>Perihal</label>
-        <input type="text" name="perihal"  class="form-control" value="<?php echo $data['perihal'];?>" required>
 
-        <label>Alasan</label>
-          <input type="text" name="alasan"  class="form-control" value="<?php echo $data['alasan'];?>" required>
+     <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Berikut merupakan data kriteria untuk peninjauan ulang UKT</h3>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+          <a data-toggle="modal" data-target="#modal-tambah" class="btn btn-success pull-right"><i class="fas fa-plus"></i><span>Tambah Data</span></a>
+          <br></br>
+          <table id="example1" class="table table-bordered table-striped">
 
-        <label>Verifikasi</label>
-        <input type="text" name="verifikasi"  class="form-control" value="<?php echo $data['verifikasi'];?>" required>
+        <thead>
+            <tr>
+                <th>
+                    <center>No</center>
+                </th>
 
-        <label>No SK</label>
-        <input type="text" name="no_sk"  class="form-control" value="<?php echo $data['no_sk'];?>" required>
+                <th>
+                    <center>ID Kriteria</center>
+                </th>
 
-        <label>Tanggal Surat</label>
-        <input type="date" name="tgl_surat"  class="form-control" value="<?php echo $data['tgl_surat'];?>" required>
+                <th>
+                    <center>Nama Kriteria</center>
+                </th>
+               
+                <th>
+                    <center>Aksi</center>
+                </th>
+            </tr>
+        </thead>
 
-        <label>Tahun Akademik</label>
-        <input type="text" name="tahun_akademik"  class="form-control" value="<?php echo $data['tahun_akademik'];?>" required>
+  
+          <?php
+              include "config/koneksi.php";
+              $i=1;
+              $rows = mysqli_query($koneksi, " select
+                                                             *
+                                                          from tb_jabatan
+                                                          ");
+              while ($data = mysqli_fetch_array($rows)) {
+          ?>
 
-        <label>Berita Acara</label>
-        <input type="file" name="berita_acara"  class="form-control" value="<?php echo $data['berita_acara'];?>" required>
-    
-      <div class="form-group">
-          <label class="col-sm-2 col-sm-2 control-label"></label>
-      <div class="col-sm-10">
-        
-      <input class="btn btn-sm btn-success" name="submit" type="submit" value="Simpan">
-      <a href="view.php" class="btn btn-sm btn-danger">Batal </a>
+<tbody>
+            <tr>
+                <td>
+                    <center><?= $i++?></center>
+                </td>
+                   <td>
+                    <center><?php echo $data["id_jabatan"] ?></center>
+                </td>
+                <td>
+                    <center><?php echo $data["jabatan"] ?></center>
+                </td>
+                
+        <td>
+          <div class="w3-dropdown-hover">
+
+            <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                
+<!-- modal edit -->
+<div class="modal fade" id="modal-edit<?php echo $data['id_jabatan']; ?>">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Data Kriteria</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <form method="POST" action="edit_kriteria.php">
+          <div class="form-group">
+            <label>ID Jabatan</label>
+            <input name="id_jabatan" type="text" class="form-control" id="id_jabatan" placeholder="" value="<?php echo $data['id_jabatan']; ?>" readonly />
+          </div>
+
+          <div class="form-group">
+            <label>Jabatan</label>
+            <input name="jabatan" type="text" class="form-control" id="jabatan" placeholder="jabatan" value="<?php echo $data['jabatan']; ?>" required />
+          </div>
+
+      </div>
+
+      <div class="modal-footer justify-content-between">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="edit" id="edit" class="btn btn-primary" name="edit">Save changes</button>
+      </div>
+      </form>
     </div>
-    </form>
-    <?php 
-  }
-  ?>
+    <!-- /.modal-content -->
   </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->     
+
+
+              <center> 
+                      <a data-toggle="modal" data-target="#modal-edit<?php echo $data["id_jabatan"]; ?>" class="btn btn-outline-primary" > Edit</a>
+
+                      <a href="hapus_kriteria.php?id_jabatan=<?php echo $data["id_jabatan"]; ?>" class="btn btn-outline-danger" > Hapus</a>
+              </center>
+            </div>
+          </div>
+        </td>
+      </tr>
+
+<?php
+}
+?>
+  </tbody>
+      </table>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+<!-- /.content-wrapper -->          
+                
+<?php
+include 'AdminLTE/footer.php';
+?>               
+
+ <!-- modal tambah -->
+    <div class="modal fade" id="modal-tambah">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Tambah Data Kriteria</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form method="post" action="tambah_kriteria.php">
+              <!-- <div class="form-row"> -->
+
+
+              <div class="form-group">
+                <label>ID Kriteria</label>
+                <input name="id_jabatan" type="text" class="form-control" id="id_jabatan" placeholder="Input Id Kriteria!" required />
+              </div>
+
+              <div class="form-group">
+                <label>Nama Kriteria</label>
+                <input  name="jabatan" type="text" class="form-control" id="jabatan" placeholder="Input Nama Kriteria!" required />
+              </div>
+              <!-- </div> -->
+
+              <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="tambah" class="btn btn-primary" id="tambah" name="submit">Save changes</button>
+              </div>
+
+          </form>
+        </div>
+        <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+  </div>
+</div>
+<!-- End Modal Tambah -->
+
+
+
+
+<!-- jQuery -->
+  <script src="AdminLTE/plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- DataTables  & Plugins -->
+  <script src="AdminLTE/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="AdminLTE/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="AdminLTE/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="/AdminLTE/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="AdminLTE/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="AdminLTE/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="AdminLTE/plugins/jszip/jszip.min.js"></script>
+  <script src="AdminLTE/plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="AdminLTE/plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="AdminLTE/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="AdminLTE/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="AdminLTE/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="AdminLTE/dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="AdminLTE/dist/js/demo.js"></script>
+  <!-- Page specific script -->
+  <script>
+    $(function() {
+      $("#example1").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+      }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+      $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false,
+        "responsive": true,
+      });
+    });
+  </script>
 </body>
-  <!-- jQuery -->
-<script src="../../AdminLTE/plugins/jquery/jquery.min.js"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="../../AdminLTE/plugins/jquery-ui/jquery-ui.min.js"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="../../AdminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- ChartJS -->
-<script src="../../AdminLTE/plugins/chart.js/Chart.min.js"></script>
-<!-- Sparkline -->
-<script src="../../AdminLTE/plugins/sparklines/sparkline.js"></script>
-<!-- JQVMap -->
-<script src="../../AdminLTE/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="../../AdminLTE/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
-<!-- jQuery Knob Chart -->
-<script src="../../AdminLTE/plugins/jquery-knob/jquery.knob.min.js"></script>
-<!-- daterangepicker -->
-<script src="../../AdminLTE/plugins/moment/moment.min.js"></script>
-<script src="../../AdminLTE/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="../../AdminLTE/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="../../AdminLTE/plugins/summernote/summernote-bs4.min.js"></script>
-<!-- overlayScrollbars -->
-<script src="../../AdminLTE/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../AdminLTE/dist/js/adminlte.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../AdminLTE/dist/js/demo.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="../../AdminLTE/dist/js/pages/dashboard.js"></script>
+
 </html>
